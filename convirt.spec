@@ -66,3 +66,11 @@ rm -rf %{buildroot}
 
 
 
+
+
+%changelog
+* Sun Oct 23 2011 Sergey Zhemoitel <serg@mandriva.org> 2.0.1-1mdv2012.0
++ Revision: 705813
+- new release 2.0.1
+- imported package convirt
+
