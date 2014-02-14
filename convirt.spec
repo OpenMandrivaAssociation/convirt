@@ -1,21 +1,15 @@
-%define name	convirt
-%define version	2.0.1
-%define release	%mkrel 1
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
 Summary:	A graphical Xen management tool
+Name:		convirt
+Version:	2.0.1
+Release:	2
+License:	GPLv2+
 Group:		System/Libraries
-License:	GPL
-URL:		http://www.convirt.net
-Source:     http://downloads.sourceforge.net/xenman/%{name}-%{version}.tar.gz
-Requires:   python
-Requires:   pygtk2.0
-Requires:   python-vte
-Requires:   python-paramiko >= 1.6.4
-BuildArch:  noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+Url:		http://www.convirt.net
+Source0:	http://downloads.sourceforge.net/xenman/%{name}-%{version}.tar.gz
+Requires:	pygtk2.0
+Requires:	python-vte
+Requires:	python-paramiko >= 1.6.4
+BuildArch:	noarch
 
 %description
 ConVirt is an intuitive, graphical management tool aimed at operational
@@ -25,12 +19,21 @@ and should, co-exist in a single management tool. So, ConVirt should
 hopefully prove valuable to both seasoned Xen Administrators as well as
 those just seeking an introduction to Xen Virtualization
 
+%files
+%doc doc/*
+%{_bindir}/convirt
+%{_bindir}/mk_image_store
+%{_datadir}/convirt
+%{_var}/cache/%{name}
+
+#----------------------------------------------------------------------------
+
 %prep
-%setup -qn %name
+%setup -qn %{name}
+find . -perm 0600 | xargs chmod 0644
+find . -perm 0700 | xargs chmod 0755
 
 %install
-rm -rf %{buildroot}
-
 install -d -m 755 %{buildroot}%{_bindir}
 install -m 755 install/common/mk_image_store %{buildroot}%{_bindir}/mk_image_store
 
@@ -52,25 +55,4 @@ cp -r src %{buildroot}%{_datadir}/%{name}
 install -d -m 755 %{buildroot}%{_var}/cache/%{name}
 cp -r image_store %{buildroot}%{_var}/cache/%{name}
 cp -r appliance_store %{buildroot}%{_var}/cache/%{name}
-
-%clean
-rm -rf %{buildroot}
-
-%files
-%defattr(-,root,root)
-%doc doc/*
-%{_bindir}/convirt
-%{_bindir}/mk_image_store
-%{_datadir}/convirt
-%{_var}/cache/%{name}
-
-
-
-
-
-%changelog
-* Sun Oct 23 2011 Sergey Zhemoitel <serg@mandriva.org> 2.0.1-1mdv2012.0
-+ Revision: 705813
-- new release 2.0.1
-- imported package convirt
 
