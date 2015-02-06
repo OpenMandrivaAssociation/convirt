@@ -1,7 +1,7 @@
 Summary:	A graphical Xen management tool
 Name:		convirt
 Version:	2.0.1
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.convirt.net
