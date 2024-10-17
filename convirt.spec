@@ -4,7 +4,7 @@ Version:	2.0.1
 Release:	3
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://www.convirt.net
+Url:		https://www.convirt.net
 Source0:	http://downloads.sourceforge.net/xenman/%{name}-%{version}.tar.gz
 Requires:	pygtk2.0
 Requires:	python-vte
